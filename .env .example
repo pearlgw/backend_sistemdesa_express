@@ -1,0 +1,2 @@
+APP_PORT=<port>
+SESSION_SECRET=<randomKey>
