@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
-import db from "../config/Database";
+import db from "../config/Database.js";
+import Users from "./UserModel.js";
+import LetterTypes from "./LetterTypeModel.js";
 
 const { DataTypes } = Sequelize;
 const LetterRequests = db.define(
@@ -13,14 +15,14 @@ const LetterRequests = db.define(
         notEmpty: true,
       },
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    letter_type_id: {
+    letterTypeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
@@ -55,5 +57,11 @@ const LetterRequests = db.define(
     freezeTableName: true,
   }
 );
+
+Users.hasMany(LetterRequests);
+LetterRequests.belongsTo(Users, { foreignKey: "userId" });
+
+LetterTypes.hasMany(LetterRequests);
+LetterRequests.belongsTo(LetterTypes, { foreignKey: "letterTypeId" });
 
 export default LetterRequests;
