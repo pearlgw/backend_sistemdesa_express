@@ -61,4 +61,6 @@ export const createLetterRequest = async (req, res) => {
   }
 };
 
-export const agreementLetterRequest = async (req, res) => {};
+export const agreementLetterRequest = async (req, res) => {
+  
+};
