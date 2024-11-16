@@ -35,12 +35,12 @@ export const Register = async (req, res) => {
       address: user.address,
     };
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Create successfully",
       data: response,
     });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
@@ -51,13 +51,13 @@ export const Login = async (req, res) => {
     },
   });
   if (!user) {
-    res.status(404).json({
+    return res.status(404).json({
       message: "User tidak ditemukan",
     });
   }
   const match = await argon2.verify(user.password, req.body.password);
   if (!match) {
-    res.status(404).json({
+    return res.status(404).json({
       message: "Password tidak cocok",
     });
   }
@@ -90,7 +90,7 @@ export const Me = async (req, res) => {
   if (!user) {
     return res.status(404).json({ message: "User tidak ditemukan" });
   }
-  res.status(200).json({
+  return res.status(200).json({
     message: "successfully",
     data: user,
   });
