@@ -4,7 +4,7 @@ import Users from "../model/UserModel.js";
 export const Register = async (req, res) => {
   const { name, email, password, confPassword, address } = req.body;
   if (password !== confPassword) {
-    res
+    return res
       .status(400)
       .json({ message: "Password & confirmation password tidak cocok" });
   }
@@ -15,7 +15,7 @@ export const Register = async (req, res) => {
     },
   });
   if (existingUser) {
-    res.status(400).json({ message: "Email sudah terdaftar" });
+    return res.status(400).json({ message: "Email sudah terdaftar" });
   }
 
   const hashPassword = await argon2.hash(password);
