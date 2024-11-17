@@ -160,11 +160,14 @@ export const getLetterRequestsByUser = async (req, res) => {
     const response = await LetterRequests.findAll({
       attributes: [
         "uuid",
+        "userId",
         "letterTypeId",
         "description",
         "status",
         "description_admin",
         "link_file",
+        "createdAt",
+        "updatedAt",
       ],
       where: {
         userId: user.id,
@@ -179,6 +182,7 @@ export const getLetterRequestsByUser = async (req, res) => {
           attributes: ["name", "description"],
         },
       ],
+      order: [["createdAt", "DESC"]],
     });
 
     res.status(200).json({

@@ -10,7 +10,7 @@ import { adminOnly, verifyUser } from "../middleware/AuthMiddleware.js";
 
 const router = express.Router();
 
-router.get("/letter-types", verifyUser, adminOnly, getLetterTypes);
+router.get("/letter-types", verifyUser, getLetterTypes);
 router.get("/letter-types/:id", verifyUser, adminOnly, getLetterTypeById);
 router.post("/letter-types", verifyUser, adminOnly, createLetterType);
 router.patch("/letter-types/:id", verifyUser, adminOnly, updateLetterType);
