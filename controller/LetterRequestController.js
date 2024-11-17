@@ -13,7 +13,10 @@ export const getLetterRequests = async (req, res) => {
         "status",
         "description_admin",
         "link_file",
+        "createdAt",
+        "updatedAt",
       ],
+      order: [["createdAt", "DESC"]],
       include: [
         {
           model: Users,

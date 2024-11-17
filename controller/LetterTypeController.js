@@ -2,7 +2,9 @@ import LetterTypes from "../model/LetterTypeModel.js";
 
 export const getLetterTypes = async (req, res) => {
   try {
-    const response = await LetterTypes.findAll();
+    const response = await LetterTypes.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.status(200).json({
       message: "Get all letter type success",
       data: response,

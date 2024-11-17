@@ -3,7 +3,8 @@ import Users from "../model/UserModel.js";
 export const getUsers = async (req, res) => {
   try {
     const response = await Users.findAll({
-      attributes: ["uuid", "name", "email", "address", "role"],
+      attributes: ["uuid", "name", "email", "address", "role", "createdAt", "updatedAt"],
+      order: [["createdAt", "DESC"]],
     });
     res.status(200).json({
       message: "Get all data success",
@@ -17,7 +18,15 @@ export const getUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
   try {
     const response = await Users.findOne({
-      attributes: ["uuid", "name", "email", "address", "role"],
+      attributes: [
+        "uuid",
+        "name",
+        "email",
+        "address",
+        "role",
+        "createdAt",
+        "updatedAt",
+      ],
       where: {
         uuid: req.params.id,
       },
